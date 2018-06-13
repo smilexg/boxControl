@@ -9,20 +9,19 @@
 		<link rel="stylesheet" type="text/css" href="../DistributionBox/style/box_index.css">
 	</head>
 	<body>
-		
 		<div class="div_title">
 			XXX 配电箱
 		</div>
 		<div class="div_tag">
-			<label for="jdq">
-				<input name="tag" type="radio" checked="checked" id="jdq" style="display: none;"/>
+			<label id="relay_info" for="jdq">
+				<input name="tag" type="radio" checked="checked" id="jdq" class="display_none"/>
 				<div class="div_tag_p float-left">
 					继电器
 				</div>
 			</label>
 			
-			<label for="aj">
-				<input name="tag" type="radio" id="aj" style="display: none;"/>
+			<label id="button_info" for="aj">
+				<input name="tag" type="radio" id="aj" class="display_none"/>
 				<div class="div_tag_aj float-right">
 					按键
 				</div>
@@ -35,135 +34,27 @@
 				<li class="jdq_first">主机0</li>
 				<li class="jdq_li">
 					<div class="jdq_num">
-						99
-					</div>
-					<div class="jdq_name">
-						<label class="name_info">继电器1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="jdq_msg">
-						<span class="send_msg">发送成功!</span>
-					</div>
-					<div class="jdq_opera">
-						<a class="a_opera a_opera_button">开</a>
-						<a class="a_opera a_opera_button">关</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				<li class="jdq_li">
-					<div class="jdq_num">
 						1
 					</div>
 					<div class="jdq_name">
 						<label class="name_info">继电器1</label>
-						<input type="text" style="display: none;"/>
+						<input type="text" class="input_rename display_none" value="继电器1"/>
 					</div>
 					<div class="jdq_msg">
-						<span class="send_msg">发送成功!</span>
+						<span class="send_msg_relay display_none">发送成功!</span>
 					</div>
 					<div class="jdq_opera">
-						<a class="a_opera a_opera_button">开</a>
-						<a class="a_opera a_opera_button">关</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				<li class="jdq_li">
-					<div class="jdq_num">
-						1
-					</div>
-					<div class="jdq_name">
-						<label class="name_info">继电器1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="jdq_msg">
-						<span class="send_msg">发送成功!</span>
-					</div>
-					<div class="jdq_opera">
-						<a class="a_opera a_opera_button">开</a>
-						<a class="a_opera a_opera_button">关</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				<li class="jdq_li">
-					<div class="jdq_num">
-						1
-					</div>
-					<div class="jdq_name">
-						<label class="name_info">继电器1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="jdq_msg">
-						<span class="send_msg">发送成功!</span>
-					</div>
-					<div class="jdq_opera">
-						<a class="a_opera a_opera_button">开</a>
-						<a class="a_opera a_opera_button">关</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				<li class="jdq_li">
-					<div class="jdq_num">
-						1
-					</div>
-					<div class="jdq_name">
-						<label class="name_info">继电器1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="jdq_msg">
-						<span class="send_msg">发送成功!</span>
-					</div>
-					<div class="jdq_opera">
-						<a class="a_opera a_opera_button">开</a>
-						<a class="a_opera a_opera_button">关</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				<li class="jdq_li">
-					<div class="jdq_num">
-						1
-					</div>
-					<div class="jdq_name">
-						<label class="name_info">继电器1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="jdq_msg">
-						<span class="send_msg">发送成功!</span>
-					</div>
-					<div class="jdq_opera">
-						<a class="a_opera a_opera_button">开</a>
-						<a class="a_opera a_opera_button">关</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				<li class="jdq_li">
-					<div class="jdq_num">
-						1
-					</div>
-					<div class="jdq_name">
-						<label class="name_info">继电器1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="jdq_msg">
-						<span class="send_msg">发送成功!</span>
-					</div>
-					<div class="jdq_opera">
-						<a class="a_opera a_opera_button">开</a>
-						<a class="a_opera a_opera_button">关</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
+						<a class="a_opera a_opera_button relay_ctrl">开</a>
+						<a class="a_opera a_opera_button relay_ctrl">关</a>
+						<a class="a_opera a_opera_button relay_sync">同步</a>
+						<a class="a_opera a_opera_button relay_rename">改名</a>
 					</div>
 				</li>
 			</ul>
 		</div>
 		
 		<!-- 按键设置 -->
-		<div class="div_aj">
+		<div class="div_aj display_none">
 			<ul class="aj_ul">
 				<li class="aj_first">主机0</li>
 				<li class="aj_li">
@@ -172,135 +63,26 @@
 					</div>
 					<div class="aj_name">
 						<label class="name_info">AJ1</label>
-						<input type="text" style="display: none;"/>
+						<input type="text" class="input_rename display_none" value="AJ1"/>
+					</div>
+					<div class="aj_msg">
+						<span class="send_msg_button display_none">发送成功!</span>
 					</div>
 					<div class="aj_opera">
 						<a class="a_opera a_opera_button">场景一</a>
 						<a class="a_opera a_opera_button">场景二</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				
-				<li class="aj_li">
-					<div class="aj_num">
-						1
-					</div>
-					<div class="aj_name">
-						<label class="name_info">AJ1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="aj_opera">
-						<a class="a_opera a_opera_button">场景一</a>
-						<a class="a_opera a_opera_button">场景二</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				
-				<li class="aj_li">
-					<div class="aj_num">
-						1
-					</div>
-					<div class="aj_name">
-						<label class="name_info">AJ1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="aj_opera">
-						<a class="a_opera a_opera_button">场景一</a>
-						<a class="a_opera a_opera_button">场景二</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				
-				<li class="aj_li">
-					<div class="aj_num">
-						1
-					</div>
-					<div class="aj_name">
-						<label class="name_info">AJ1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="aj_opera">
-						<a class="a_opera a_opera_button">场景一</a>
-						<a class="a_opera a_opera_button">场景二</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				
-				<li class="aj_li">
-					<div class="aj_num">
-						1
-					</div>
-					<div class="aj_name">
-						<label class="name_info">AJ1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="aj_opera">
-						<a class="a_opera a_opera_button">场景一</a>
-						<a class="a_opera a_opera_button">场景二</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				
-				<li class="aj_li">
-					<div class="aj_num">
-						1
-					</div>
-					<div class="aj_name">
-						<label class="name_info">AJ1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="aj_opera">
-						<a class="a_opera a_opera_button">场景一</a>
-						<a class="a_opera a_opera_button">场景二</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				
-				<li class="aj_li">
-					<div class="aj_num">
-						1
-					</div>
-					<div class="aj_name">
-						<label class="name_info">AJ1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="aj_opera">
-						<a class="a_opera a_opera_button">场景一</a>
-						<a class="a_opera a_opera_button">场景二</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
-					</div>
-				</li>
-				
-				<li class="aj_li">
-					<div class="aj_num">
-						1
-					</div>
-					<div class="aj_name">
-						<label class="name_info">AJ1</label>
-						<input type="text" style="display: none;"/>
-					</div>
-					<div class="aj_opera">
-						<a class="a_opera a_opera_button">场景一</a>
-						<a class="a_opera a_opera_button">场景二</a>
-						<a class="a_opera a_opera_button">同步</a>
-						<a class="a_opera a_opera_button">改名</a>
+						<a class="a_opera a_opera_button button_sync">同步</a>
+						<a class="a_opera a_opera_button button_rename">改名</a>
 					</div>
 				</li>
 			</ul>
 		</div>
 		
 		<!--遮罩层-->
-		<div id="mask"></div>
+		<div id="mask" class="display_none"></div>
 		
 		<!--场景配置-->
-		<div class="set_scene">
+		<div class="set_scene display_none">
 			<div class="scene_aj_name">
 				AJ1
 			</div>
@@ -459,156 +241,12 @@
 						</li>
 					</ul>
 				</div>
-				<div class="add_img float-left">
+				<!--<div class="add_img float-left">
 					==>
-				</div>
+				</div>-->
 				<div class="add_scene_comm float-right">
 					<ul class="comm_ul">
 						<li class="comm_title">已添加命令</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
-						<li class="scene_comm_li">
-							xxxx开
-						</li>
 					</ul>
 				</div>
 			</div>
@@ -621,5 +259,8 @@
 				</div>
 			</div>
 		</div>
+		<script src="../DistributionBox/js/jquery.js" ></script>
+		<script src="../DistributionBox/js/box_index.js" ></script>
+		
 	</body>
 </html>

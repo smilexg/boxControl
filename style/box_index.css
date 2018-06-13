@@ -124,7 +124,7 @@ input[type=radio]#jdq:checked+div,input[type=radio]#aj:checked+div{
 	line-height: 30.5px;
 }
 
-.jdq_msg{
+.jdq_msg,.aj_msg{
 	color: #FF5053;
 	height: 15px;
 	line-height: 15px;
@@ -145,7 +145,7 @@ input[type=radio]#jdq:checked+div,input[type=radio]#aj:checked+div{
 
 .aj_li{
 	width: 201px;
-	height: 185px;
+	height: 200px;
 	text-align: center;
 	margin: 10px;
 	border: 2px solid #d8d8d8;
@@ -224,16 +224,17 @@ input[type=radio]#jdq:checked+div,input[type=radio]#aj:checked+div{
 	width: 358px;
 	height: 698px;
 	margin: auto 20px;
-	border: 1px solid #333333;
+	/*border: 1px solid #333333;*/
 }
 
-.add_img{
+/*.add_img{
 	width: 50px;
 	height: 50px;
 	margin: 320px auto;
 	line-height: 50px;
 	font-size: 18px;
-}
+	text-align: center;
+}*/
 
 .scene_comm_li{
 	width: 169px;
@@ -282,4 +283,12 @@ input[type=radio]#jdq:checked+div,input[type=radio]#aj:checked+div{
 	background-color: #D8D8D8;
 	border-radius:5px;
 	color: #FFFFFF;
+}
+
+.display_none{
+	display: none;
+}
+
+.display_block{
+	display: block;
 }
