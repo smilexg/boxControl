@@ -6,11 +6,11 @@
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 		<title>配电箱主页</title>
-		<link rel="stylesheet" type="text/css" href="../DistributionBox/style/box_index.css">
+		<link rel="stylesheet" type="text/css" href="../boxControl/style/box_index.css">
 	</head>
 	<body>
 		<div class="div_title">
-			XXX 配电箱
+			$box_name$-$gzh_id$-$code_id$-$box_quantity$
 		</div>
 		<div class="div_tag">
 			<label id="relay_info" for="jdq">
@@ -30,27 +30,35 @@
 		
 		<!-- 继电器设置 -->
 		<div class="div_jdq">
-			<ul class="jdq_ul">
-				<li class="jdq_first">主机0</li>
-				<li class="jdq_li">
-					<div class="jdq_num">
-						1
-					</div>
-					<div class="jdq_name">
-						<label class="name_info">继电器1</label>
-						<input type="text" class="input_rename display_none" value="继电器1"/>
-					</div>
-					<div class="jdq_msg">
-						<span class="send_msg_relay display_none">发送成功!</span>
-					</div>
-					<div class="jdq_opera">
-						<a class="a_opera a_opera_button relay_ctrl">开</a>
-						<a class="a_opera a_opera_button relay_ctrl">关</a>
-						<a class="a_opera a_opera_button relay_sync">同步</a>
-						<a class="a_opera a_opera_button relay_rename">改名</a>
-					</div>
-				</li>
+			
+		</div>
+		
+		<div class="display_none relay_li">
+			<li class="jdq_first">主机编号：$machine_num$</li>
+			<ul class="jdq_ul relay_ul_$machine_num$">
+				
 			</ul>
+		</div>
+		
+		<div class="display_none relay_opera">
+			<li class="jdq_li">	
+				<div class="jdq_num">
+					@relay_num@
+				</div>
+				<div class="jdq_name">
+					<label class="name_info_@relay_num@">@relay_name@</label>
+					<input type="text" class="input_rename_@relay_num@ display_none" value="@relay_name@"/>
+				</div>
+				<div class="jdq_msg">
+					<span class="send_msg_relay_@relay_num@ display_none"></span>
+				</div>
+				<div class="jdq_opera">
+					<a class="a_opera a_opera_button relay_ctrl" title="@relay_num@">开</a>
+					<a class="a_opera a_opera_button relay_ctrl" title="@relay_num@">关</a>
+					<a class="a_opera a_opera_button relay_sync" title="@relay_num@">同步</a>
+					<a class="a_opera a_opera_button relay_rename" title="@relay_num@">改名</a>
+				</div>
+			</li>
 		</div>
 		
 		<!-- 按键设置 -->
@@ -95,149 +103,283 @@
 				<div class="add_scene_comm float-left">
 					<ul class="comm_ul to_be_added_ul">
 						<li class="comm_title title_to_be_added">待添加命令</li>
-						<li class="scene_comm_li to_be_added 1" title="1">
+						<li class="scene_comm_li to_be_added">
 							xxxx开1
+							<div class="paixu display_none" >1</div>
 						</li>
-						<li class="scene_comm_li to_be_added 2" title="2">
+						<li class="scene_comm_li to_be_added">
 							xxxx开2
+							<div class="paixu display_none" >2</div>
 						</li>
-						<li class="scene_comm_li to_be_added 3" title="3">
+						<li class="scene_comm_li to_be_added">
 							xxxx开3
+							<div class="paixu display_none" >3</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="4">
+						<li class="scene_comm_li to_be_added">
 							xxxx开4
+							<div class="paixu display_none" >4</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="5">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开5
+							<div class="paixu display_none" >5</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="6">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开6
+							<div class="paixu display_none" >
+								6
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="7">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开7
+							<div class="paixu display_none" >
+								7
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="8">
+						<li class="scene_comm_li to_be_added">
 							xxxx开8
+							<div class="paixu display_none" >
+								8
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="9">
+						<li class="scene_comm_li to_be_added">
 							xxxx开9
+							<div class="paixu display_none" >
+								9
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="10">
+						<li class="scene_comm_li to_be_added">
 							xxxx开10
+							<div class="paixu display_none" >
+								10
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="11">
+						<li class="scene_comm_li to_be_added">
 							xxxx开11
+							<div class="paixu display_none" >
+								11
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="12">
+						<li class="scene_comm_li to_be_added">
 							xxxx开12
+							<div class="paixu display_none" >
+								12
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="13">
+						<li class="scene_comm_li to_be_added">
 							xxxx开13
+							<div class="paixu display_none" >
+								13
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="14">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开14
+							<div class="paixu display_none" >
+								14
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="15">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开15
+							<div class="paixu display_none" >
+								15
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="16">
+						<li class="scene_comm_li to_be_added">
 							xxxx开16
+							<div class="paixu display_none" >
+								16
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="17">
+						<li class="scene_comm_li to_be_added">
 							xxxx开17
+							<div class="paixu display_none" >
+								17
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="18">
+						<li class="scene_comm_li to_be_added">
 							xxxx开18
+							<div class="paixu display_none" >
+								18
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="19">
+						<li class="scene_comm_li to_be_added">
 							xxxx开19
+							<div class="paixu display_none" >
+								19
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="20">
+						<li class="scene_comm_li to_be_added">
 							xxxx开20
+							<div class="paixu display_none" >
+								20
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="21">
+						<li class="scene_comm_li to_be_added">
 							xxxx开21
+							<div class="paixu display_none" >
+								21
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="22">
+						<li class="scene_comm_li to_be_added">
 							xxxx开22
+							<div class="paixu display_none" >
+								22
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="23">
+						<li class="scene_comm_li to_be_added">
 							xxxx开23
+							<div class="paixu display_none" >
+								23
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="24">
+						<li class="scene_comm_li to_be_added">
 							xxxx开24
+							<div class="paixu display_none" >
+								24
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="25">
+						<li class="scene_comm_li to_be_added">
 							xxxx开25
+							<div class="paixu display_none" >
+								25
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="26">
+						<li class="scene_comm_li to_be_added">
 							xxxx开26
+							<div class="paixu display_none" >
+								26
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="27">
+						<li class="scene_comm_li to_be_added">
 							xxxx开27
+							<div class="paixu display_none" >
+								27
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="28">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开28
+							<div class="paixu display_none" >
+								28
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="29">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开29
+							<div class="paixu display_none" >
+								29
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="30">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开30
+							<div class="paixu display_none" >
+								30
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="31">
+						<li class="scene_comm_li to_be_added">
 							xxxx开31
+							<div class="paixu display_none" >
+								31
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="32">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开32
+							<div class="paixu display_none" >
+								32
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="33">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开33
+							<div class="paixu display_none" >
+								33
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="34">
+						<li class="scene_comm_li to_be_added">
 							xxxx开34
+							<div class="paixu display_none" >
+								34
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="35">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开35
+							<div class="paixu display_none" >
+								35
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="36">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开36
+							<div class="paixu display_none" >
+								36
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="37">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开37
+							<div class="paixu display_none" >
+								37
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="38">
+						<li class="scene_comm_li to_be_added">
 							xxxx开38
+							<div class="paixu display_none" >
+								38
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="39">
+						<li class="scene_comm_li to_be_added">
 							xxxx开39
+							<div class="paixu display_none" >
+								39
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="40">
+						<li class="scene_comm_li to_be_added">
 							xxxx开40
+							<div class="paixu display_none" >
+								40
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="41">
+						<li class="scene_comm_li to_be_added">
 							xxxx开41
+							<div class="paixu display_none" >
+								41
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="42">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开42
+							<div class="paixu display_none" >
+								42
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="43">
+						<li class="scene_comm_li to_be_added" >
 							xxxx开43
+							<div class="paixu display_none" >
+								43
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="44">
+						<li class="scene_comm_li to_be_added">
 							xxxx开44
+							<div class="paixu display_none" >
+								44
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="45">
+						<li class="scene_comm_li to_be_added">
 							xxxx开45
+							<div class="paixu display_none" >
+								45
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="46">
+						<li class="scene_comm_li to_be_added">
 							xxxx开46
+							<div class="paixu display_none" >
+								46
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="47">
+						<li class="scene_comm_li to_be_added">
 							xxxx开47
+							<div class="paixu display_none" >
+								47
+							</div>
 						</li>
-						<li class="scene_comm_li to_be_added" title="48">
+						<li class="scene_comm_li to_be_added">
 							xxxx开48
+							<div class="paixu display_none" >
+								48
+							</div>
 						</li>
 					</ul>
 				</div>
@@ -259,8 +401,8 @@
 				</div>
 			</div>
 		</div>
-		<script src="../DistributionBox/js/jquery.js" ></script>
-		<script src="../DistributionBox/js/box_index.js" ></script>
+		<script src="../boxControl/js/jquery.js" ></script>
+		<script src="../boxControl/js/box_index.js" ></script>
 		
 	</body>
 </html>
