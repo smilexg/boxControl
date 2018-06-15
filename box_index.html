@@ -6,11 +6,13 @@
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 		<title>配电箱主页</title>
-		<link rel="stylesheet" type="text/css" href="../boxControl/style/box_index.css">
+		<link rel="stylesheet" type="text/css" href="../DistributionBox/style/box_index.css">
 	</head>
 	<body>
 		<div class="div_title">
 			$box_name$-$gzh_id$-$code_id$-$box_quantity$
+			<input type="hidden" id="gzhId" value="$gzh_id$" />
+			<input type="hidden" id="codeId" value="$code_id$" />
 		</div>
 		<div class="div_tag">
 			<label id="relay_info" for="jdq">
@@ -29,61 +31,68 @@
 		</div>
 		
 		<!-- 继电器设置 -->
-		<div class="div_jdq">
-			
-		</div>
+		<div class="div_jdq"></div>
 		
+		<!-- 按键设置 -->
+		<div class="div_aj display_none"></div>
+		
+		
+		<!--主机编号模板-->
 		<div class="display_none relay_li">
-			<li class="jdq_first">主机编号：$machine_num$</li>
-			<ul class="jdq_ul relay_ul_$machine_num$">
-				
-			</ul>
+			<li class="li_first">主机编号：$machine_num$</li>
+			<ul class="device_ul relay_ul_$machine_num$"></ul>
 		</div>
 		
+		<!--继电器控制模板-->
 		<div class="display_none relay_opera">
-			<li class="jdq_li">	
-				<div class="jdq_num">
+			<li class="device_li">	
+				<div class="device_num">
 					@relay_num@
 				</div>
 				<div class="jdq_name">
-					<label class="name_info_@relay_num@">@relay_name@</label>
-					<input type="text" class="input_rename_@relay_num@ display_none" value="@relay_name@"/>
+					<label class="name_info_@relay_id@">@relay_name@</label>
+					<input type="text" class="input_rename_@relay_id@ display_none" value="@relay_name@"/>
 				</div>
 				<div class="jdq_msg">
-					<span class="send_msg_relay_@relay_num@ display_none"></span>
+					<span class="send_msg_relay_@relay_id@ display_none"></span>
 				</div>
 				<div class="jdq_opera">
-					<a class="a_opera a_opera_button relay_ctrl" title="@relay_num@">开</a>
-					<a class="a_opera a_opera_button relay_ctrl" title="@relay_num@">关</a>
-					<a class="a_opera a_opera_button relay_sync" title="@relay_num@">同步</a>
-					<a class="a_opera a_opera_button relay_rename" title="@relay_num@">改名</a>
+					<a class="a_opera a_opera_button relay_ctrl relay_open" title="@relay_id@">开</a>
+					<a class="a_opera a_opera_button relay_ctrl relay_close" title="@relay_id@">关</a>
+					<a class="a_opera a_opera_button relay_sync" title="@relay_id@">同步</a>
+					<a class="a_opera a_opera_button relay_rename" title="@relay_id@">改名</a>
 				</div>
 			</li>
 		</div>
 		
-		<!-- 按键设置 -->
-		<div class="div_aj display_none">
-			<ul class="aj_ul">
-				<li class="aj_first">主机0</li>
-				<li class="aj_li">
-					<div class="aj_num">
-						1
-					</div>
-					<div class="aj_name">
-						<label class="name_info">AJ1</label>
-						<input type="text" class="input_rename display_none" value="AJ1"/>
-					</div>
-					<div class="aj_msg">
-						<span class="send_msg_button display_none">发送成功!</span>
-					</div>
-					<div class="aj_opera">
-						<a class="a_opera a_opera_button scene_ctrl">场景一</a>
-						<a class="a_opera a_opera_button scene_ctrl">场景二</a>
-						<a class="a_opera a_opera_button button_sync">同步</a>
-						<a class="a_opera a_opera_button button_rename">改名</a>
-					</div>
-				</li>
-			</ul>
+		
+		
+		<!--主机编号模板-->
+		<div class="display_none button_li">
+			<li class="li_first">主机编号：$machine_num$</li>
+			<ul class="device_ul aj_ul_$machine_num$"></ul>
+		</div>
+		
+		<!--aj控制模板-->
+		<div class="display_none button_opera">
+			<li class="device_li">
+				<div class="device_num">
+					@aj_num@
+				</div>
+				<div class="aj_name">
+					<label class="name_info_@aj_id@">@aj_name@</label>
+					<input type="text" class="input_rename_@aj_id@ display_none" value="@aj_name@"/>
+				</div>
+				<div class="aj_msg">
+					<span class="send_msg_button_@aj_id@ display_none"></span>
+				</div>
+				<div class="aj_opera">
+					<a class="a_opera a_opera_button scene_ctrl" title="@aj_id@">场景一</a>
+					<a class="a_opera a_opera_button scene_ctrl" title="@aj_id@">场景二</a>
+					<a class="a_opera a_opera_button button_sync" title="@aj_id@">同步</a>
+					<a class="a_opera a_opera_button button_rename" title="@aj_id@">改名</a>
+				</div>
+			</li>
 		</div>
 		
 		<!--遮罩层-->
@@ -101,7 +110,7 @@
 			
 			<div class="scene_comm">
 				<div class="add_scene_comm float-left">
-					<ul class="comm_ul to_be_added_ul">
+					<ul class="device_ul to_be_added_ul">
 						<li class="comm_title title_to_be_added">待添加命令</li>
 						<li class="scene_comm_li to_be_added">
 							xxxx开1
@@ -387,7 +396,7 @@
 					==>
 				</div>-->
 				<div class="add_scene_comm float-right">
-					<ul class="comm_ul added_ul">
+					<ul class="device_ul added_ul">
 						<li class="comm_title title_added">已添加命令</li>
 					</ul>
 				</div>
@@ -401,8 +410,8 @@
 				</div>
 			</div>
 		</div>
-		<script src="../boxControl/js/jquery.js" ></script>
-		<script src="../boxControl/js/box_index.js" ></script>
+		<script src="../DistributionBox/js/jquery.js" ></script>
+		<script src="../DistributionBox/js/box_index.js" ></script>
 		
 	</body>
 </html>

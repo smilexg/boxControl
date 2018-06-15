@@ -35,9 +35,9 @@ if(divMask.length>0){
 //继电器相关
 gcy.device = {};
 
-gcy.device.msg = function(value,value2){
-	console.log(value2);
-	var spanSendMsg = $("span.send_msg"+value2);
+//提示信息 500毫秒后自动隐藏
+gcy.device.msg = function(value,suffix){
+	var spanSendMsg = $("span.send_msg"+suffix);
 	spanSendMsg.html(value);
 	spanSendMsg.show();
 	setTimeout(function () {
@@ -48,10 +48,22 @@ gcy.device.msg = function(value,value2){
 //开关控制
 gcy.device.relayCtrl = function(){
 	var aRelayCtrl = $(".relay_ctrl");
-	console.log(11);
+	var relayType = 1;
 	aRelayCtrl.on('click', function(e){
 		e.stopPropagation();
-		gcy.device.msg("ok","_relay_"+this.title);
+		if($(this).hasClass('relay_close')){
+			relayType = 0;
+		}
+		var title = this.title;
+		$.post('http://localhost:8080/boxctrl/relayCtrl/'+$("#gzhId").val()+'-'+$("#codeId").val()+'-'+title+'-'+relayType,function(value){
+			if (value[0].result == "0") {
+				gcy.device.msg("发送成功!","_relay_"+title);
+			}else if(value[0].result == "offLine"){
+				gcy.device.msg("主机未联网!","_relay_"+title);
+			}else{
+				gcy.device.msg("发送失败!","_relay_"+title);
+			}
+		});
 	});
 }
 
@@ -59,39 +71,49 @@ gcy.device.relayCtrl = function(){
 gcy.device.sync = function(){
 	var aRelaySync = $(".relay_sync,.button_sync");
 	aRelaySync.on('click', function(e){
-		var val="_relay_"+this.title;
-		if($(this).hasClass("button_sync")){
-			val="_button_"+this.title;
-		}
 		e.stopPropagation();
-		gcy.device.msg("sync ok!",val);
+		var title = this.title;
+		var val="_relay_"+title;
+		if($(this).hasClass("button_sync")){
+			val="_button_"+title;
+		}
+		
+		$.post('http://localhost:8080/boxctrl/relaySync/'+$("#gzhId").val()+'-'+$("#codeId").val()+'-'+title,function(value){
+			if (value[0].result == "0") {
+				gcy.device.msg("同步成功!",val);
+			}else if(value[0].result == "offLine"){
+				gcy.device.msg("主机未联网!",val);
+			}else{
+				gcy.device.msg("同步失败!",val);
+			}
+		});
+		
 	});
-	//此处 同步两个 还是 出现一个框 一个一个同步?
 }
 
 //重命名
 gcy.device.rename = function(){
 	var aRelayRename = $(".relay_rename,.button_rename");
-	var relay_num = 0;
+	var relay_id = 0;
 	//重命名
 	aRelayRename.on('click', function(e){
 		e.stopPropagation();
-		relay_num = this.title;
-		$(".name_info_"+relay_num).hide();
-		$(".input_rename_"+relay_num).show();
+		relay_id = this.title;
+		$(".name_info_"+relay_id).hide();
+		$(".input_rename_"+relay_id).show();
 		
-		$(".input_rename_"+relay_num).blur(function(){
-			$(".name_info_"+relay_num).html($(".input_rename_"+relay_num).val());
-			$(".name_info_"+relay_num).show();
-			$(".input_rename_"+relay_num).hide();
+		
+		//重命名失去焦点时  后期要改成  用完成按钮来完成改名操作 不用焦点事件
+		$(".input_rename_"+relay_id).blur(function(){
+			$.post('http://localhost:8080/boxctrl/relayRename/',{"relayId":relay_id,"relayName":$(".input_rename_" + relay_id).val()},function(value){
+				if (value[0].result == "success") {
+					$(".name_info_" + relay_id).html($(".input_rename_" + relay_id).val());
+					$(".name_info_" + relay_id).show();
+					$(".input_rename_" + relay_id).hide();
+				}
+			});
 		})
 	});
-	
-	//重命名失去焦点时
-//	$(".input_rename_"+relay_num).blur(function(){
-//		$(".name_info_"+relay_num).show();
-//		$(".input_rename_"+relay_num).hide();
-//	})
 }
 
 //场景配置
@@ -155,6 +177,8 @@ gcy.getInfo.boxInfo = function(){
 		    	htmlList += htmlTemp.temp1(value[i]);
 		    }
 		    $("div.div_title").html(htmlList);
+		    gcy.getInfo.relayInfo();
+		    gcy.getInfo.sceneInfo();
 		} else{
 			$("div.div_title").html("暂无配电箱!");
 		}
@@ -173,30 +197,48 @@ gcy.getInfo.relayInfo = function(){
 		    	var relayOperaList = '';
 		    	var relayOpera = $("div.relay_opera").html();
 		    	for(var j = 0;j<value[i].relay_info.length;j++){
-//		    		var relay_id = value[i].relay_info[j].relay_id;
 		    		relayOperaList += relayOpera.temp2(value[i].relay_info[j]);
-		    		$("ul.relay_ul_"+value[i].machine_num).html(relayOperaList);
 		    	}
-		    	
+		    	$("ul.relay_ul_"+value[i].machine_num).html(relayOperaList);
 		    }
+		    gcy.tagClick();
+			gcy.device.relayCtrl();
+			gcy.device.sync();
+			gcy.device.rename();
 		} else{
 			$("div.div_jdq").html("暂无继电器!");
 		}
 	});
 }
 
+gcy.getInfo.sceneInfo = function(){
+	$.post('http://localhost:8080/boxctrl/getButtoInfo/21',function(value){
+		console.log(value);
+		if (value[0].result == "success") {
+		    var htmlTemp = $("div.button_li").html();
+		    for(var i = 1; i < value.length; i++){
+		    	var htmlList = '';
+		    	htmlList += htmlTemp.temp1(value[i]);
+		    	$("div.div_aj").append(htmlList);
+		    	var buttonOperaList = '';
+		    	var buttonOpera = $("div.button_opera").html();
+		    	for(var j = 0;j<value[i].aj_info.length;j++){
+		    		buttonOperaList += buttonOpera.temp2(value[i].aj_info[j]);
+		    	}
+		    	$("ul.aj_ul_"+value[i].machine_num).html(buttonOperaList);
+		    }
+		} else{
+			$("div.div_aj").html("暂无按键!");
+		}
+	});
+}
+
 
 gcy.getInfo.boxInfo();
-gcy.getInfo.relayInfo();
 //事件初始化
 $(document).ready(function(){
 	setTimeout(function () {
-		gcy.tagClick();
-		gcy.device.relayCtrl();
-		gcy.device.sync();
-		gcy.device.rename();
 		gcy.device.sceneCtrl();
 		gcy.scene.addComm();
     }, 0.1*1000);
-	
 });
