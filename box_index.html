@@ -9,11 +9,14 @@
 		<link rel="stylesheet" type="text/css" href="../boxControl/style/box_index.css">
 	</head>
 	<body>
+		<!--标题信息-->
 		<div class="div_title">
 			$box_name$-$gzh_id$-$code_id$-$box_quantity$
 			<input type="hidden" id="gzhId" value="$gzh_id$" />
 			<input type="hidden" id="codeId" value="$code_id$" />
 		</div>
+		
+		<!--头标签-->
 		<div class="div_tag">
 			<label id="relay_info" for="jdq">
 				<input name="tag" type="radio" checked="checked" id="jdq" class="display_none"/>
@@ -49,14 +52,14 @@
 				<div class="device_num">
 					@relay_num@
 				</div>
-				<div class="jdq_name">
+				<div class="device_name">
 					<label class="name_info_@relay_id@">@relay_name@</label>
 					<input type="text" class="input_rename_@relay_id@ display_none" value="@relay_name@"/>
 				</div>
-				<div class="jdq_msg">
+				<div class="device_msg">
 					<span class="send_msg_relay_@relay_id@ display_none"></span>
 				</div>
-				<div class="jdq_opera">
+				<div class="device_opera">
 					<a class="a_opera a_opera_button relay_ctrl relay_open" title="@relay_id@">开</a>
 					<a class="a_opera a_opera_button relay_ctrl relay_close" title="@relay_id@">关</a>
 					<a class="a_opera a_opera_button relay_sync" title="@relay_id@">同步</a>
@@ -65,12 +68,10 @@
 			</li>
 		</div>
 		
-		
-		
 		<!--主机编号模板-->
 		<div class="display_none button_li">
 			<li class="li_first">主机编号：$machine_num$</li>
-			<ul class="device_ul aj_ul_$machine_num$"></ul>
+			<ul class="device_ul aj_ul_$machine_num$" title="$machine_num$"></ul>
 		</div>
 		
 		<!--aj控制模板-->
@@ -79,16 +80,16 @@
 				<div class="device_num">
 					@aj_num@
 				</div>
-				<div class="aj_name">
+				<div class="device_name">
 					<label class="name_info_@aj_id@">@aj_name@</label>
 					<input type="text" class="input_rename_@aj_id@ display_none" value="@aj_name@"/>
 				</div>
-				<div class="aj_msg">
+				<div class="device_msg">
 					<span class="send_msg_button_@aj_id@ display_none"></span>
 				</div>
-				<div class="aj_opera">
-					<a class="a_opera a_opera_button scene_ctrl" title="@aj_id@">场景一</a>
-					<a class="a_opera a_opera_button scene_ctrl" title="@aj_id@">场景二</a>
+				<div class="device_opera">
+					<a class="a_opera a_opera_button scene_ctrl" title="@aj_id@-1">场景一</a>
+					<a class="a_opera a_opera_button scene_ctrl" title="@aj_id@-2">场景二</a>
 					<a class="a_opera a_opera_button button_sync" title="@aj_id@">同步</a>
 					<a class="a_opera a_opera_button button_rename" title="@aj_id@">改名</a>
 				</div>
@@ -100,312 +101,47 @@
 		
 		<!--场景配置-->
 		<div class="set_scene display_none">
-			<div class="scene_aj_name">
-				AJ1
-			</div>
-			
-			<div class="scene_name">
-				场景一
-			</div>
-			
+			<!--按键名-->
+			<div class="scene_aj_name"></div>
+			<!--场景名-->
+			<div class="scene_name"></div>
+			<!--单个场景新添加的命令-->
+			<input type="hidden" id="scene_cont_val"  />
+			<!--场景命令列表-->
 			<div class="scene_comm">
 				<div class="add_scene_comm float-left">
-					<ul class="device_ul to_be_added_ul">
-						<li class="comm_title title_to_be_added">待添加命令</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开1
-							<div class="paixu display_none" >1</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开2
-							<div class="paixu display_none" >2</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开3
-							<div class="paixu display_none" >3</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开4
-							<div class="paixu display_none" >4</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开5
-							<div class="paixu display_none" >5</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开6
-							<div class="paixu display_none" >
-								6
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开7
-							<div class="paixu display_none" >
-								7
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开8
-							<div class="paixu display_none" >
-								8
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开9
-							<div class="paixu display_none" >
-								9
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开10
-							<div class="paixu display_none" >
-								10
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开11
-							<div class="paixu display_none" >
-								11
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开12
-							<div class="paixu display_none" >
-								12
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开13
-							<div class="paixu display_none" >
-								13
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开14
-							<div class="paixu display_none" >
-								14
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开15
-							<div class="paixu display_none" >
-								15
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开16
-							<div class="paixu display_none" >
-								16
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开17
-							<div class="paixu display_none" >
-								17
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开18
-							<div class="paixu display_none" >
-								18
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开19
-							<div class="paixu display_none" >
-								19
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开20
-							<div class="paixu display_none" >
-								20
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开21
-							<div class="paixu display_none" >
-								21
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开22
-							<div class="paixu display_none" >
-								22
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开23
-							<div class="paixu display_none" >
-								23
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开24
-							<div class="paixu display_none" >
-								24
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开25
-							<div class="paixu display_none" >
-								25
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开26
-							<div class="paixu display_none" >
-								26
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开27
-							<div class="paixu display_none" >
-								27
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开28
-							<div class="paixu display_none" >
-								28
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开29
-							<div class="paixu display_none" >
-								29
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开30
-							<div class="paixu display_none" >
-								30
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开31
-							<div class="paixu display_none" >
-								31
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开32
-							<div class="paixu display_none" >
-								32
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开33
-							<div class="paixu display_none" >
-								33
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开34
-							<div class="paixu display_none" >
-								34
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开35
-							<div class="paixu display_none" >
-								35
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开36
-							<div class="paixu display_none" >
-								36
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开37
-							<div class="paixu display_none" >
-								37
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开38
-							<div class="paixu display_none" >
-								38
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开39
-							<div class="paixu display_none" >
-								39
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开40
-							<div class="paixu display_none" >
-								40
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开41
-							<div class="paixu display_none" >
-								41
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开42
-							<div class="paixu display_none" >
-								42
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added" >
-							xxxx开43
-							<div class="paixu display_none" >
-								43
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开44
-							<div class="paixu display_none" >
-								44
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开45
-							<div class="paixu display_none" >
-								45
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开46
-							<div class="paixu display_none" >
-								46
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开47
-							<div class="paixu display_none" >
-								47
-							</div>
-						</li>
-						<li class="scene_comm_li to_be_added">
-							xxxx开48
-							<div class="paixu display_none" >
-								48
-							</div>
-						</li>
-					</ul>
+					<li class="comm_title title_to_be_added">待添加命令</li>
+					<ul class="device_ul to_be_added_ul"></ul>
 				</div>
-				<!--<div class="add_img float-left">
-					==>
-				</div>-->
+				
 				<div class="add_scene_comm float-right">
-					<ul class="device_ul added_ul">
-						<li class="comm_title title_added">已添加命令</li>
-					</ul>
+					<li class="comm_title title_added">已添加命令</li>
+					<ul class="device_ul added_ul"></ul>
+				</div>
+				<!--命令模板-->
+				<div class="scene_cont_add display_none">
+					<li class="scene_comm_li to_be_added" title="$relay_cont_id$">
+						$relay_name$-$relay_ctrl_name$
+						<div class="paixu display_none" >
+							$relay_sync_id$
+						</div>
+					</li>
+				</div>
+				
+				<div class="scene_cont_added display_none">
+					<li class="scene_comm_li added" title="$relay_cont_id$">
+						$relay_name$-$relay_ctrl_name$
+						<div class="paixu display_none" >
+							$relay_sync_id$
+						</div>
+					</li>
 				</div>
 			</div>
 			<div class="scene_opera">
-				<div class="scene_opera_save float-left">
+				<div class="scene_opera_ctrl opera_save float-left">
 					保存
 				</div>
-				<div class="scene_opera_clear float-right">
+				<div class="scene_opera_ctrl opera_clear float-right">
 					取消
 				</div>
 			</div>

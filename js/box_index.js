@@ -102,7 +102,6 @@ gcy.device.rename = function(){
 		$(".name_info_"+relay_id).hide();
 		$(".input_rename_"+relay_id).show();
 		
-		
 		//重命名失去焦点时  后期要改成  用完成按钮来完成改名操作 不用焦点事件
 		$(".input_rename_"+relay_id).blur(function(){
 			$.post('http://localhost:8080/boxctrl/relayRename/',{"relayId":relay_id,"relayName":$(".input_rename_" + relay_id).val()},function(value){
@@ -124,20 +123,51 @@ gcy.device.sceneCtrl = function(){
 	//配置场景显示
 	aSceneCtrl.on('click', function(e){
 		e.stopPropagation();
+		$("#scene_cont_val").val("");
+		gcy.getInfo.relayContForScene(this.parentNode.parentNode.parentNode.title,this.title);
+		gcy.getInfo.relayContForSceneAdded(this.parentNode.parentNode.parentNode.title,this.title);
+		
+		$(".scene_name").html(this.innerHTML);
+		$(".scene_aj_name").html(this.parentNode.parentNode.querySelector("div.device_name > label").innerHTML);
 		gcy.mask.maskShow();
 		divSetScene.show();
-	})
+		setTimeout(function () {
+			gcy.scene.addComm();
+	    }, 0.1*1000);
+	});
+	
+	var operaClear = $(".opera_clear");
+	var operaSave = $(".opera_save");
+	
+	operaClear.on('click', function(e){
+		e.stopPropagation();
+		gcy.mask.maskHide();
+		divSetScene.hide();
+	});
+	
+	operaSave.on('click', function(e){
+		e.stopPropagation();
+		
+		
+		
+		gcy.mask.maskHide();
+		divSetScene.hide();
+	});
 }
 
 gcy.scene = {};
 //场景添加命令
 gcy.scene.addComm = function(){
+	console.log("addComm");
+	
 	var liSceneComm = $(".scene_comm_li");
 	liSceneComm.on('click', function(){
-		if($(this).hasClass("to_be_added")){
-			$(".added_ul").append($(this).removeClass("to_be_added").addClass("added"));	
-		}else if($(this).hasClass("added")){
+		if($(this).hasClass("to_be_added")){//待添加  -> 已添加
+			$("#scene_cont_val").val($("#scene_cont_val").val()+this.title+";");
+			$(".added_ul").append($(this).removeClass("to_be_added").addClass("added"));
+		}else if($(this).hasClass("added")){//已添加  -> 待添加
 			$(".to_be_added_ul").append($(this).removeClass("added").addClass("to_be_added"));
+			$("#scene_cont_val").val($("#scene_cont_val").val().replace(this.title+";",''));
 			
 			//对li进行排序 
 			var domlist = $('.to_be_added_ul');
@@ -233,12 +263,44 @@ gcy.getInfo.sceneInfo = function(){
 	});
 }
 
+gcy.getInfo.relayContForScene = function(machineNum,ajCont){
+	$.post('http://localhost:8080/boxctrl/getRelayContForScene/21-'+machineNum+'-'+ajCont,function(value){
+		console.log(value);
+		if (value[0].result == "success") {
+			var htmlList = '';
+		    var htmlTemp = $("div.scene_cont_add").html();
+		    for(var i = 1; i < value.length; i++){
+		    	htmlList += htmlTemp.temp1(value[i]);
+		    }
+		    $("ul.to_be_added_ul").html(htmlList);
+		} else{
+			$("ul.to_be_added_ul").html("暂无待添加内容!");
+		}
+	});
+}
+
+gcy.getInfo.relayContForSceneAdded = function(machineNum,ajCont){
+	$.post('http://localhost:8080/boxctrl/getRelayContForSceneAdded/21-'+machineNum+'-'+ajCont,function(value){
+		console.log(value);
+		if (value[0].result == "success") {
+			var htmlList = '';
+		    var htmlTemp = $("div.scene_cont_added").html();
+		    for(var i = 1; i < value.length; i++){
+		    	$("#scene_cont_val").val($("#scene_cont_val").val()+value[i].relay_cont_id+";");
+		    	htmlList += htmlTemp.temp1(value[i]);
+		    }
+		    $("ul.added_ul").html(htmlList);
+		} else{
+			$("ul.added_ul").html("");
+		}
+	});
+}
+
 
 gcy.getInfo.boxInfo();
 //事件初始化
 $(document).ready(function(){
 	setTimeout(function () {
 		gcy.device.sceneCtrl();
-		gcy.scene.addComm();
     }, 0.1*1000);
 });

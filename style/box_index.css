@@ -104,17 +104,10 @@ input[type=radio]#jdq:checked+div,input[type=radio]#aj:checked+div{
 	color: #999999;
 }
 
-.jdq_name{
+.device_name{
 	width: 201px;
 	height: 35px;
 	line-height: 35px;
-}
-
-.jdq_opera{
-	width: 201px;
-	height: 100px;
-	display: flex;
-	flex-wrap: wrap;
 }
 
 .a_opera{
@@ -124,7 +117,7 @@ input[type=radio]#jdq:checked+div,input[type=radio]#aj:checked+div{
 	line-height: 30.5px;
 }
 
-.jdq_msg,.aj_msg{
+.device_msg{
 	color: #FF5053;
 	height: 15px;
 	line-height: 15px;
@@ -143,14 +136,7 @@ input[type=radio]#jdq:checked+div,input[type=radio]#aj:checked+div{
 	color: #F6F6F6;
 }
 
-
-.aj_name{
-	width: 201px;
-	height: 35px;
-	line-height: 35px;
-}
-
-.aj_opera{
+.device_opera{
 	width: 201px;
 	height: 100px;
 	display: flex;
@@ -244,7 +230,7 @@ input[type=radio]#jdq:checked+div,input[type=radio]#aj:checked+div{
 	line-height: 50px;
 }
 
-.scene_opera_save{
+.scene_opera_ctrl{
 	width: 260px;
 	height: 40px;
 	font-size: 20px;
@@ -253,21 +239,15 @@ input[type=radio]#jdq:checked+div,input[type=radio]#aj:checked+div{
 	margin: 4px auto;
 	border: 1px solid;
 	border-radius:5px;
-	background-color: #00c1de;
 	color: #FFFFFF;
 }
 
-.scene_opera_clear{
-	width: 260px;
-	height: 40px;
-	font-size: 20px;
-	line-height: 40px;
-	text-align: center;
-	margin: 4px auto;
-	border: 1px solid;
+.opera_save{
+	background-color: #00c1de;
+}
+
+.opera_clear{
 	background-color: #D8D8D8;
-	border-radius:5px;
-	color: #FFFFFF;
 }
 
 .display_none{
