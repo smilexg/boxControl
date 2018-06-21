@@ -115,8 +115,10 @@ gcy.device.rename = function(){
 	});
 }
 
+gcy.scene = {};
+
 //场景配置
-gcy.device.sceneCtrl = function(){
+gcy.scene.sceneCtrl = function(){
 	var aSceneCtrl = $(".scene_ctrl");
 	var divSetScene = $(".set_scene");
 	
@@ -124,6 +126,7 @@ gcy.device.sceneCtrl = function(){
 	aSceneCtrl.on('click', function(e){
 		e.stopPropagation();
 		$("#scene_cont_val").val("");
+		$("#aj_cont_val").val(this.title);
 		gcy.getInfo.relayContForScene(this.parentNode.parentNode.parentNode.title,this.title);
 		gcy.getInfo.relayContForSceneAdded(this.parentNode.parentNode.parentNode.title,this.title);
 		
@@ -148,14 +151,20 @@ gcy.device.sceneCtrl = function(){
 	operaSave.on('click', function(e){
 		e.stopPropagation();
 		
-		
-		
+		var sceneContVal = $("#scene_cont_val").val();
+		$.post('http://localhost:8080/boxctrl/sceneContSave/'+$("#aj_cont_val").val(),{"sceneCont":sceneContVal,},function(value){
+			console.log(value);
+			if (value[0].result == "success") {
+			
+			} else{
+			
+			}
+		});
 		gcy.mask.maskHide();
 		divSetScene.hide();
 	});
 }
 
-gcy.scene = {};
 //场景添加命令
 gcy.scene.addComm = function(){
 	console.log("addComm");
@@ -177,6 +186,15 @@ gcy.scene.addComm = function(){
 		    });
 	        $('.to_be_added_ul').append(newList);
 		}
+	});
+}
+
+gcy.scene.sync = function(){
+	var aButtonSync = $(".button_sync");
+	aButtonSync.on('click', function(){
+		$.post('http://localhost:8080/boxctrl/ajSync/'+this.title,function(value){
+			console.log(value);
+		});
 	});
 }
 
@@ -301,6 +319,7 @@ gcy.getInfo.boxInfo();
 //事件初始化
 $(document).ready(function(){
 	setTimeout(function () {
-		gcy.device.sceneCtrl();
+		gcy.scene.sceneCtrl();
+		gcy.scene.sync();
     }, 0.1*1000);
 });
