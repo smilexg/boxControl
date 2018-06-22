@@ -69,22 +69,17 @@ gcy.device.relayCtrl = function(){
 
 //同步
 gcy.device.sync = function(){
-	var aRelaySync = $(".relay_sync,.button_sync");
+	var aRelaySync = $(".relay_sync");
 	aRelaySync.on('click', function(e){
 		e.stopPropagation();
 		var title = this.title;
-		var val="_relay_"+title;
-		if($(this).hasClass("button_sync")){
-			val="_button_"+title;
-		}
-		
 		$.post('http://localhost:8080/boxctrl/relaySync/'+$("#gzhId").val()+'-'+$("#codeId").val()+'-'+title,function(value){
 			if (value[0].result == "0") {
-				gcy.device.msg("同步成功!",val);
+				gcy.device.msg("同步成功!","_relay_"+title);
 			}else if(value[0].result == "offLine"){
-				gcy.device.msg("主机未联网!",val);
+				gcy.device.msg("主机未联网!","_relay_"+title);
 			}else{
-				gcy.device.msg("同步失败!",val);
+				gcy.device.msg("同步失败!","_relay_"+title);
 			}
 		});
 		
@@ -153,7 +148,6 @@ gcy.scene.sceneCtrl = function(){
 		
 		var sceneContVal = $("#scene_cont_val").val();
 		$.post('http://localhost:8080/boxctrl/sceneContSave/'+$("#aj_cont_val").val(),{"sceneCont":sceneContVal,},function(value){
-			console.log(value);
 			if (value[0].result == "success") {
 			
 			} else{
@@ -167,8 +161,6 @@ gcy.scene.sceneCtrl = function(){
 
 //场景添加命令
 gcy.scene.addComm = function(){
-	console.log("addComm");
-	
 	var liSceneComm = $(".scene_comm_li");
 	liSceneComm.on('click', function(){
 		if($(this).hasClass("to_be_added")){//待添加  -> 已添加
@@ -192,8 +184,16 @@ gcy.scene.addComm = function(){
 gcy.scene.sync = function(){
 	var aButtonSync = $(".button_sync");
 	aButtonSync.on('click', function(){
+		var title = this.title;
 		$.post('http://localhost:8080/boxctrl/ajSync/'+this.title,function(value){
-			console.log(value);
+			if (value[0].result == "0") {
+		    	gcy.getInfo.sceneInfo();
+				gcy.device.msg("同步成功!","_button_"+title);
+			}else if(value[0].result == "offLine"){
+				gcy.device.msg("主机未联网!","_button_"+title);
+			}else{
+				gcy.device.msg("同步失败!","_button_"+title);
+			}
 		});
 	});
 }
@@ -217,7 +217,6 @@ gcy.getInfo = {};
 
 gcy.getInfo.boxInfo = function(){
 	$.post('http://localhost:8080/boxctrl/getBoxInfo/21-1-1001',function(value){
-		console.log(value);
 		if (value[0].result == "success") {
 			var htmlList = '';
 		    var htmlTemp = $("div.div_title").html();
@@ -235,7 +234,6 @@ gcy.getInfo.boxInfo = function(){
 
 gcy.getInfo.relayInfo = function(){
 	$.post('http://localhost:8080/boxctrl/getRelayInfo/21',function(value){
-		console.log(value);
 		if (value[0].result == "success") {
 		    var htmlTemp = $("div.relay_li").html();
 		    for(var i = 1; i < value.length; i++){
@@ -249,7 +247,7 @@ gcy.getInfo.relayInfo = function(){
 		    	}
 		    	$("ul.relay_ul_"+value[i].machine_num).html(relayOperaList);
 		    }
-		    gcy.tagClick();
+		    
 			gcy.device.relayCtrl();
 			gcy.device.sync();
 			gcy.device.rename();
@@ -261,7 +259,6 @@ gcy.getInfo.relayInfo = function(){
 
 gcy.getInfo.sceneInfo = function(){
 	$.post('http://localhost:8080/boxctrl/getButtoInfo/21',function(value){
-		console.log(value);
 		if (value[0].result == "success") {
 		    var htmlTemp = $("div.button_li").html();
 		    for(var i = 1; i < value.length; i++){
@@ -278,12 +275,13 @@ gcy.getInfo.sceneInfo = function(){
 		} else{
 			$("div.div_aj").html("暂无按键!");
 		}
+		gcy.scene.sceneCtrl();
+		gcy.scene.sync();
 	});
 }
 
 gcy.getInfo.relayContForScene = function(machineNum,ajCont){
 	$.post('http://localhost:8080/boxctrl/getRelayContForScene/21-'+machineNum+'-'+ajCont,function(value){
-		console.log(value);
 		if (value[0].result == "success") {
 			var htmlList = '';
 		    var htmlTemp = $("div.scene_cont_add").html();
@@ -299,7 +297,6 @@ gcy.getInfo.relayContForScene = function(machineNum,ajCont){
 
 gcy.getInfo.relayContForSceneAdded = function(machineNum,ajCont){
 	$.post('http://localhost:8080/boxctrl/getRelayContForSceneAdded/21-'+machineNum+'-'+ajCont,function(value){
-		console.log(value);
 		if (value[0].result == "success") {
 			var htmlList = '';
 		    var htmlTemp = $("div.scene_cont_added").html();
@@ -319,7 +316,6 @@ gcy.getInfo.boxInfo();
 //事件初始化
 $(document).ready(function(){
 	setTimeout(function () {
-		gcy.scene.sceneCtrl();
-		gcy.scene.sync();
+		gcy.tagClick();
     }, 0.1*1000);
 });
